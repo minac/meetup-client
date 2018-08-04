@@ -17,6 +17,7 @@ const (
 	eventCommentEndpoint = "/2/event_comment"
 	eventsConcierge      = "/2/concierge"
 	ratingsEndpoint      = "/2/event_rating"
+	rsvpsEndpoint        = "/2/rsvps"
 	smartRadius          = "smart"
 )
 
@@ -299,4 +300,20 @@ func (c *Client) DeleteEvent(eventID string) error {
 	}
 
 	return nil
+}
+
+// EventRsvps returns the rsvps for the given eventID
+// options o is required to have at least an EventID and an optional MemberID
+func (c *Client) EventRsvps(prep func(map[string][]string, url.Values), o map[string][]string) (*models.Rsvps, error) {
+	v := c.urlValues()
+	prep(o, v)
+
+	uri := rsvpsEndpoint + queryStart + v.Encode()
+
+	var rsvps models.Rsvps
+	if err := c.call(http.MethodGet, uri, nil, &rsvps); err != nil {
+		return nil, err
+	}
+
+	return &rsvps, nil
 }

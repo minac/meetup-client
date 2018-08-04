@@ -28,6 +28,7 @@ type Clienter interface {
 	EventComments(func(map[string][]string, url.Values), map[string][]string) (*models.Comments, error)
 	EventCommentByID(int) (*models.Comment, error)
 	EventRatings(func(map[string][]string, url.Values), map[string][]string) (*models.Ratings, error)
+	EventRsvps(func(map[string][]string, url.Values), map[string][]string) (*models.Rsvps, error)
 	RateEvent(func(map[string][]string, url.Values), map[string][]string) (*models.Rating, error)
 	CommentOnEvent(func(map[string][]string, url.Values), map[string][]string) (*models.Comment, error)
 	LikeComment(int) error

@@ -60,3 +60,26 @@ type Ratings struct {
 	TotalCount int      `json:"total_count"`
 	Count      int      `json:"count"`
 }
+
+// Rsvp submitted for a particular meetup event by a member
+type Rsvp struct {
+	Answers          []string `json:"answers"`
+	AttendanceStatus string   `json:"attendance_status"`
+	Created          int      `json:"created"`
+	Event            []string `json:"event"`
+	Group            []string `json:"group"`
+	Guests           int      `json:"guests"`
+	Member           []string `json:"member"`
+	PayStatus        string   `json:"pay_status"`
+	Response         string   `json:"response"`
+	Updated          int      `json:"updated"`
+	Venue            []string `json:"venue"`
+}
+
+// Rsvps wraps a slice of Rsvvp for unmarshalling the results array.
+// It also contains meta fields from the response.
+type Rsvps struct {
+	Rsvp []Rsvp `json:"results"`
+	// TotalCount int      `json:"total_count"`
+	// Count      int      `json:"count"`
+}
